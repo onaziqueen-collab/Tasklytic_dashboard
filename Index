@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tasklytic Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">Tasklytic</div>
+      <ul>
+        <li class="active">Dashboard</li>
+        <li>Projects</li>
+        <li>Teams</li>
+        <li>Tasks</li>
+        <li>Reports</li>
+        <li>Settings</li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header>
+        <h1>Dashboard Overview</h1>
+        <div class="user-info">
+          <img src="https://i.ibb.co/Gkz3pH8/avatar.png" alt="User Avatar" />
+          <span>Hi, Precious 👋</span>
+        </div>
+      </header>
+
+      <!-- Stats Section -->
+      <section class="stats">
+        <div class="stat-card">
+          <h3>Completed Tasks</h3>
+          <p>124</p>
+        </div>
+        <div class="stat-card">
+          <h3>Ongoing Projects</h3>
+          <p>8</p>
+        </div>
+        <div class="stat-card">
+          <h3>Pending Reviews</h3>
+          <p>5</p>
+        </div>
+        <div class="stat-card">
+          <h3>Team Members</h3>
+          <p>12</p>
+        </div>
+      </section>
+
+      <!-- Charts -->
+      <section class="charts">
+        <div class="chart-container">
+          <h3>Tasks Performance</h3>
+          <canvas id="taskChart"></canvas>
+        </div>
+        <div class="chart-container">
+          <h3>Project Progress</h3>
+          <canvas id="progressChart"></canvas>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // Task performance chart
+    const ctx1 = document.getElementById('taskChart').getContext('2d');
+    new Chart(ctx1, {
+      type: 'bar',
+      data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        datasets: [{
+          label: 'Tasks Completed',
+          data: [12, 19, 8, 15, 10, 6, 9],
+          backgroundColor: '#3b82f6'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } }
+      }
+    });
+
+    // Project progress chart
+    const ctx2 = document.getElementById('progressChart').getContext('2d');
+    new Chart(ctx2, {
+      type: 'doughnut',
+      data: {
+        labels: ['Completed', 'In Progress', 'Pending'],
+        datasets: [{
+          data: [65, 25, 10],
+          backgroundColor: ['#22c55e', '#facc15', '#ef4444']
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { position: 'bottom' } }
+      }
+    });
+  </script>
+</body>
+</html>
